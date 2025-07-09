@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4">
+  <h4 class="mb-4 text-center">📚 All Student Submissions</h4>
+  {% if students %}
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Hours Studied</th>
+          <th>Attendance (%)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in students %}
+        <tr>
+          <td>{{ s[0] }}</td>
+          <td>{{ s[1] }}</td>
+          <td>{{ s[2] }}</td>
+          <td>{{ s[3] }}</td>
+          <td>
+            {% if s[4] == 'PASS' %}
+              <span class="badge bg-success">✅ PASS</span>
+            {% else %}
+              <span class="badge bg-danger">❌ FAIL</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-muted text-center">No records found yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
